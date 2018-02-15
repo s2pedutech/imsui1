@@ -1,0 +1,18 @@
+<nb-card>
+  <nb-card-header>
+    Students Table
+  </nb-card-header>
+
+  <nb-card-body>
+      <!--<button mat-button class="button btn-primary" (click)="enquiryData()" >Enquiries</button>
+      <button mat-button class="button btn-primary" style="margin-left: 10px;" (click)="admitData()" >Admitted</button>-->
+      <button  mat-button class="btn edit btn-success " style="margin-left: 400px;" (click)="addData()"><i class="nb-plus"></i></button> 
+           <!--<button  mat-button class="btn edit btn-default " ><i class="nb-trash"></i></button> -->
+
+
+
+   <ng2-smart-table [settings]="settings" [source]="source" (edit)="onEdit($event)" (deleteConfirm)="onDeleteConfirm($event)">
+       
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

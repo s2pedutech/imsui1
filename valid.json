@@ -1,0 +1,35 @@
+{
+	"enquirydata": [{
+			"id": 26,
+			"firstName": "Pruitt",
+			"lastName": "Shepard",
+			"email": "pruittsloan@comtours.com",
+			"mob": "8605601208",
+			"college": "BNCOE",
+			"add": "Ram Nagar Nagpur",
+			"ssc": "89%",
+			"sscyop": "2010",
+			"hsc": "70%",
+			"hscyop": "2012",
+			"degree": "M.E",
+			"stream": "C.S.E",
+			"degreeyop": "2018"
+		},
+		{
+			"id": 26,
+			"firstName": "Pruitt",
+			"lastName": "Shepard",
+			"email": "pruittsloan@comtours.com",
+			"mob": "8605601208",
+			"college": "BNCOE",
+			"add": "Ram Nagar Nagpur",
+			"ssc": "89%",
+			"sscyop": "2010",
+			"hsc": "70%",
+			"hscyop": "2012",
+			"degree": "M.E",
+			"stream": "C.S.E",
+			"degreeyop": "2018"
+		}
+	]
+}
