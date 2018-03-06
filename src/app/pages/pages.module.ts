@@ -7,6 +7,8 @@ import { AdmittedModule } from './admitted/admitted.module';
 
 import { DetailsModule } from './details/details.module';
 import { CoursesModule } from './courses/courses.module';
+import { LoginModule } from './login/login.module';
+
 
 
 import { PagesRoutingModule } from './pages-routing.module';
@@ -25,6 +27,8 @@ const PAGES_COMPONENTS = [
     DetailsModule,
     AdmittedModule,
     CoursesModule,
+    LoginModule,
+    
       //Dashboard1Component,
 
     

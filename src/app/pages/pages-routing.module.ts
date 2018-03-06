@@ -10,6 +10,7 @@ import { CoursesComponent } from './courses/courses.component';
 
 
 
+
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
@@ -19,20 +20,12 @@ const routes: Routes = [{
   }, {
   
     path: 'dashboard1',
-    component: Dashboard1Component,
-   /*children:[
-          
-    {
-    path: 'details',
-    component: DetailsComponent,
-    }],*/
+     component: Dashboard1Component,
   },
   
    {
     path: 'details',
     component: DetailsComponent,
-       // loadChildren: './details/details.module#DetailsModule',
-
   },
   {
     path: 'admitted',

@@ -32,6 +32,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
 
     
   },
+  
   /*{
     title: 'details',
     icon: 'nb-compose',
@@ -133,7 +134,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/tables/smart-table',
       },
     ],
-  },
+  },*/
 {
     title: 'Auth',
     icon: 'nb-locked',
@@ -155,5 +156,5 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/auth/reset-password',
       },
     ],
-  },*/
+  },
 ];
