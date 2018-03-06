@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase} from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore'; 
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
@@ -8,14 +9,14 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class SmartTableService {
  
- items:Array<any> = [];
- //items: Observable<any>;
- //itemList: AngularFireList<any>;
- constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase) {
-   
-   
+ //items:Array<any> = [];
+ //list: Observable<any>;
+
+
+ constructor(public af: AngularFireDatabase) {
+  
     }
-//public static af: AngularFireDatabase;
+
   public static enquirydata = [{
     id: 1,
     firstName: 'Faisal',
@@ -67,22 +68,20 @@ admitdata = [{
     'age': 55,
   }];
 
-  getenquiryData() : Observable<any[]> {
+  getenquiryData() {
   //console.log(this.enquirydata);
         //console.log(SmartTableService.af.list('/enquirydata'));
 
-    return this.af.list('/enquirydata').valueChanges();
+    //return this.af.list('/enquirydata').snapshotChanges();
     
   }
   
- getEData() : Observable<any[]> 
+ getEData() 
  {
- console.log("here");
-    return this.af.list('/enquirydata').valueChanges();
-     //this.items = this.af.list('/enquirydata').valueChanges();
-     //console.log(this.items);
-    //return this.items;
-    //console.log(this.items);
+
+    return this.af.list('/enquirydata').snapshotChanges().map(changes => {
+      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    });
  }
   
  static getIDs(){
@@ -92,7 +91,7 @@ admitdata = [{
   static getMaxID(){
   return Math.max(...this.getIDs());
 }
-
+ 
 static getNextID(){
 return this.getMaxID() + 1;
 }
@@ -100,6 +99,7 @@ return this.getMaxID() + 1;
  addNewEnquiry(data) 
 {
     console.log(data);
+    console.log("add called");
     //console.log(this.af);
     //data.id = this.getNextID();
    this.af.list('/enquirydata/').push(data);
@@ -110,10 +110,16 @@ return this.getMaxID() + 1;
     console.log("add");
 }
 
- editEnquiry(data)
+ editEnquiry(key,value)
 {
 
-    console.log(data.id);
+    console.log(key);
+    console.log(value);
+    console.log("edit called");
+     
+this.af.object(`/enquirydata/`+ key).update(value);
+
+//this.af.object(`/enquirydata`).update(`/` +key,value);
     /*
     let itemIndex = this.items.findIndex(item => item.id == data.id);
     this.items[itemIndex] = data;
@@ -121,5 +127,12 @@ return this.getMaxID() + 1;
     console.log(this.items);
     console.log("edit");
     */
+}
+deleteEnquiry(data){
+console.log(data);
+  //console.log(data.key);
+    this.af.list(`/enquirydata`).remove(data);
+    console.log("item deleted");
+    
 }
 }
