@@ -6,6 +6,10 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterModule, Routes } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import {  AngularFireList } from 'angularfire2/database';
+
+import 'rxjs/add/operator/map';
 
     
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -53,6 +57,7 @@ import { SmartTableService } from '../../@core/data/smart-table.service';
 export class Dashboard1Component {
 
   settings = {
+  
     add: {
       addButtonContent: '<i class="nb-plus"></i>',
       createButtonContent: '<i class="nb-checkmark"></i>',
@@ -62,10 +67,13 @@ export class Dashboard1Component {
       editButtonContent: '<i class="nb-edit"></i>',
       saveButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
+     
     },
     delete: {
-      deleteButtonContent: '<i class="nb-trash"></i>',
-      confirmDelete: true,
+     
+     deleteButtonContent: '<i class="nb-trash"></i>',
+      delete: true,
+     
     },
     columns: {
       id: {
@@ -93,38 +101,44 @@ export class Dashboard1Component {
   };
 
   source: LocalDataSource = new LocalDataSource();
+ //items: Observable<any>;
+ 
+ 
+  items: Array<any> = [];
+  
 
   constructor(private service: SmartTableService, private router: Router) {
+  //console.log(this.service.getEData());
+  console.log("hello");
+ 
+ this.service.getEData().subscribe(k=> {
+  console.log(k);
+   this.items = [];
+  k.map(c=> {
+  this.items.push(c);
+      this.source.load(this.items);
   
-        this.service.getEData().subscribe(k => {
-   //this.items = k;
-    console.log(k);
-    this.source.load(k);
-    //return this.items;
-});
-        
-      /*  .filter((item) => item.isAdmitted === "false");
-    this.source.load(enquirydata);
-    */
-    //this.enquiryData();
-  }
-
-  onDeleteConfirm(event): void {
-  console.log("here");
+  })
+  console.log(this.items);
+  });
+    
+    
+   
+    console.log(this.source);
+   
+    } 
+    
+onDelete(event) {
+console.log(event);
     if (window.confirm('Are you sure you want to delete?')) {
-      event.confirm.resolve();
+    //console.log(event);
+     //event.confirm.resolve(event);
+      this.service.deleteEnquiry(event.data.key);
     } else {
       event.confirm.reject();
     }
   }
-  /*enquiryData(){
-  console.log("here am i ");
-        const enquirydata = this.service.getenquiryData().filter((item) => item.isAdmitted === "false");
-        console.log(enquirydata);
-    this.source.load(enquirydata);
-
-  console.log("enquiryData called");
-}*/
+  
 
 onEdit(event)
 {

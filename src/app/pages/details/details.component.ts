@@ -70,14 +70,11 @@ this.isAdmitted = false;
         this.data = params;
             console.log(params);
             this.isAddPage = (params === undefined || params === null || Object.keys(params).length === 0);
-            /*if(params === null)
-                this.isAddPage = !(params === undefined || params === null || Object.keys(params).length === 0)
-                this.isAddPage = true;
-                else
-                this.isAddPage = false;*/
+            
         });
         console.log(this.data);
         console.log(this.isAddPage);
+        
     }
     
     addNewStudent(f)
@@ -86,6 +83,11 @@ this.isAdmitted = false;
     
 console.log(f.value);
 var obj1 = f.value;
+if(obj1 != null){
+ console.log(f.value);
+        //this.service.editEnquiry(f.value);
+       console.log("editenquiry");
+}
     if(obj1.firstName != null)
         obj.firstName = obj1.firstName;
     else
@@ -164,11 +166,15 @@ var obj1 = f.value;
         
     
     console.log(obj);
-    
+    if(!this.isAddPage){
+        this.service.editEnquiry(this.data.key, obj);
+        }
+        else{
            this.service.addNewEnquiry(obj);
+           }
 
-    //console.log(f.value);
-    /*if(this.isAddPage)
+    /*console.log(f.value);
+    if(this.isAddPage)
        {
        this.service.addNewEnquiry(obj);
        console.log("addenquiry");
