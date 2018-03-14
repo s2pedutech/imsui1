@@ -187,4 +187,9 @@ if(obj1 != null){
         this.router.navigate(['pages/dashboard1']);
 
     }
+    
+    Cancel(){
+     this.router.navigate(['pages/dashboard1']);
+    
+    }
 }

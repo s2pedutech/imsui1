@@ -3,61 +3,104 @@
     <nb-card>
       <nb-card-header>Default Inputs</nb-card-header>
       <nb-card-body >
-        <form #f="ngForm" (ngSubmit) = "addNewStudent(f)" novalidate  >
+        <form #f="ngForm" (ngSubmit) = "addNewStudent(f)" >
+            
+          
         <div class="row full-name-inputs">
+            
           <div class="col-sm-6 input-group">
-            <input type="text" placeholder="First Name" class="form-control" name="firstName" [(ngModel)]="data.firstName" />
+            <input type="text" placeholder="First Name" class="form-control" name="firstName" [(ngModel)]="data.firstName" #firstName="ngModel" ngModel required />
+               <show-errors [control]="firstName"></show-errors>
           </div>
+            
           <div class="col-sm-6 input-group">
-            <input type="text" placeholder="Last Name" class="form-control" [required]=false name="lastName" [(ngModel)]="data.lastName" />
+            <input type="text" placeholder="Last Name" class="form-control"  name="lastName" [(ngModel)]="data.lastName" #lastName="ngModel" ngModel required />
+              <show-errors [control]="lastName"></show-errors>
           </div >
+            
             <div class="col-sm-6 input-group">
-            <input type="text" placeholder="ID" class="form-control" name="id" [(ngModel)]="data.id" [required]=false />
+            <input type="text" placeholder="ID" class="form-control" name="id" [(ngModel)]="data.id" #id="ngModel" ngModel required />
+                 <show-errors [control]="id"></show-errors>
           </div>
+            
         </div>
+            
+            
+            
         <div class="row full-name-inputs">
+            
           <div class="col-sm-6 input-group">
-            <input type="text" placeholder="Email-Id" class="form-control" name="email" [(ngModel)]="data.email" [required]=false />
+            <input type="text" placeholder="Email-Id" class="form-control" name="email" [(ngModel)]="data.email" #email="ngModel" ngModel  required email/>
+              <show-errors [control]="email"></show-errors>
           </div>
+            
           <div class="col-sm-6 input-group">
-            <input type="text" placeholder="Mobile No." class="form-control" name="mob" [(ngModel)]="data.mob" [required]=false/>
-          </div>
+            <input type="text" placeholder="Mobile No." class="form-control" name="mob" [(ngModel)]="data.mob" #mob="ngModel" ngModel required telephoneNumber/>
+         <show-errors [control]="mob"></show-errors> </div>
+            
         </div>
+            
+            
+            
+            
        <div class="input-group">
-          <input type="text" placeholder="College" class="form-control" name="college" [(ngModel)]="data.college" [required]=false/>
-        </div>
+          <input type="text" placeholder="College" class="form-control" name="college" [(ngModel)]="data.college" #college="ngModel" ngModel required/>
+       <show-errors [control]="college"></show-errors> </div>
+            
         <div class="input-group">
-          <input type="text" placeholder="Address" class="form-control"  name="add" [(ngModel)]="data.add" [required]=false/>
+          <input type="text" placeholder="Address" class="form-control"  name="add" [(ngModel)]="data.add" #add="ngModel" ngModel required/>
+       <show-errors [control]="add"></show-errors> </div>
+            
+            
+            
+            
+         <div class="row full-name-inputs">
+             
+          <div class="col-sm-6 input-group">
+            <input type="text" placeholder="SSC Score" class="form-control" name="ssc" [(ngModel)]="data.ssc" #ssc="ngModel" ngModel required/>
+       <show-errors [control]="ssc"></show-errors>   </div>
+             
+          <div class="col-sm-6 input-group">
+            <input type="text" placeholder="SSC Passing Year" class="form-control"  name="sscyop" [(ngModel)]="data.sscyop" #sscyop="ngModel" ngModel required passingYear/>
+        <show-errors [control]="sscyop"></show-errors>  </div>
         </div>
+            
+            
+            
+            
          <div class="row full-name-inputs">
           <div class="col-sm-6 input-group">
-            <input type="text" placeholder="SSC Score" class="form-control" name="ssc" [(ngModel)]="data.ssc" [required]=false/>
-          </div>
+            <input type="text" placeholder="HSC Score" class="form-control" name="hsc" [(ngModel)]="data.hsc" #hsc="ngModel" ngModel required/>
+        <show-errors [control]="hsc"></show-errors>  </div>
+             
           <div class="col-sm-6 input-group">
-            <input type="text" placeholder="SSC Passing Year" class="form-control"  name="sscyop" [(ngModel)]="data.sscyop" [required]=false/>
-          </div>
+            <input type="text" placeholder="HSC Passing Year" class="form-control" name="hscyop" [(ngModel)]="data.hscyop" #hscyop="ngModel" ngModel required passingYear/>
+        <show-errors [control]="hscyop"></show-errors>  </div>
         </div>
-         <div class="row full-name-inputs">
-          <div class="col-sm-6 input-group">
-            <input type="text" placeholder="HSC Score" class="form-control" name="hsc" [(ngModel)]="data.hsc" [required]=false/>
-          </div>
-          <div class="col-sm-6 input-group">
-            <input type="text" placeholder="HSC Passing Year" class="form-control" name="hscyop" [(ngModel)]="data.hscyop" [required]=false/>
-          </div>
-        </div>
+            
+            
+            
+            
        <div class="row full-name-inputs">
           <div class="col-sm-6 input-group">
-            <input type="text" placeholder="Degree" class="form-control" name="degree" [(ngModel)]="data.degree" [required]=false/>
-          </div>
+            <input type="text" placeholder="Degree" class="form-control" name="degree" [(ngModel)]="data.degree" #degree="ngModel" ngModel required/>
+         <show-errors [control]="degree"></show-errors> </div>
+           
           <div class="col-sm-6 input-group">
-            <input type="text" placeholder="Stream" class="form-control" name="stream" [(ngModel)]="data.stream" [required]=false/>
-          </div>
+            <input type="text" placeholder="Stream" class="form-control" name="stream" [(ngModel)]="data.stream" #stream="ngModel" ngModel required/>
+        <show-errors [control]="stream"></show-errors>  </div>
+           
            <div class="col-sm-6 input-group">
-            <input type="text" placeholder="Degree Passing Year" class="form-control" name="degreeyop" [(ngModel)]="data.degreeyop" [required]=false/>
-          </div>
+            <input type="text" placeholder="Degree Passing Year" class="form-control" name="degreeyop" [(ngModel)]="data.degreeyop" #degreeyop="ngModel" ngModel required passingYear/>
+        <show-errors [control]="degreeyop"></show-errors>  </div>
+           
+           
+           
+           
+        
             <div class="col-sm-6 input-group">IsAdmitted&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <label>
-        <input type="radio" name="isAdmitted" value="true" [(ngModel)]="data.isAdmitted" />
+        <input type="radio" name="isAdmitted" value="true" [(ngModel)]="data.isAdmitted" #isAdmitted="ngModel" ngModel required  />
         Yes
     </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <label>
@@ -66,10 +109,17 @@
     </label>
            </div>
         </div>
-               <button type="submit" class="btn btn-primary">Submit</button>
-        <button type="cancel" class="btn ">Cancel</button>
- 
+            
+            
+            
+            
+               
+   <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+             <button type="cancel" class="btn" (click)="Cancel()">Cancel</button>
+            
        </form>
+       
+       
       </nb-card-body>
     </nb-card>
 
